@@ -209,7 +209,7 @@
             <div class="nav-item" onclick="showTab('results')">📈 Results</div>
             <div style="margin-top: 30px; padding: 15px; background: #34495e; border-radius: 5px;">
                 <div style="font-weight: bold;" id="userName">Admin User</div>
-                <button class="btn btn-secondary" style="width: 100%; margin-top: 10px;" onclick="logout()">Logout</button>
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 10px;" onclick= "window.location.href = 'group 4_1.html'">Logout</button>
             </div>
         </div>
 
@@ -345,10 +345,7 @@
         ];
 
         // Initialize
-        window.onload = function() {
-            updateDashboard();
-            loadElections();
-        };
+        window.onload = updateDashboard();
 
         // Tab navigation
         function showTab(tabName) {
@@ -439,12 +436,7 @@
                 `;
                 container.appendChild(card);
             });
-        }
-
-        // Load all elections
-        function loadElections() {
-            updateDashboard();
-        }
+        }        
 
         // View election
         function viewElection(id) {
@@ -467,15 +459,6 @@
         function resetProfile() {
             document.getElementById('nameInput').value = 'Admin User';
             document.getElementById('emailInput').value = 'admin@university.edu';
-        }
-
-        // Logout
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                alert('Logged out successfully!');
-                // In a real app, redirect to login page
-                // window.location.href = 'login.html';
-            }
         }
     </script>
 </body>
