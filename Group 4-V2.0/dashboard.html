@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Election Dashboard - Admin Panel</title>
     <style>
+        :root {
+            --bg-main: #F1F5F9;
+            --sidebar-bg: #1E3A8A;
+            --sidebar-bg-2: #2563EB;
+            --primary-blue: #2563EB;
+            --accent-gold: #F59E0B;
+            --card-bg: #FFFFFF;
+            --text-dark: #111827;
+            --text-muted: #6B7280;
+            --success: #22C55E;
+            --warning: #F59E0B;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,7 +27,8 @@
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background: #f5f5f5;
+            background: var(--bg-main);
+            color: var(--text-dark);
         }
 
         .container {
@@ -24,7 +39,7 @@
         /* Sidebar */
         .sidebar {
             width: 250px;
-            background: #2c3e50;
+            background: linear-gradient(180deg, var(--sidebar-bg), var(--sidebar-bg-2));
             color: white;
             padding: 20px;
         }
@@ -34,24 +49,28 @@
             font-weight: bold;
             margin-bottom: 30px;
             text-align: center;
-            color: #3498db;
+            color: #ffffff;
         }
 
         .nav-item {
             padding: 12px 15px;
             margin: 5px 0;
-            background: #34495e;
-            border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
+            color: #E5E7EB;
+            background: transparent;
+            border-radius: 8px;
+            text-decoration: none;
+            display: block;
         }
 
         .nav-item:hover {
-            background: #3498db;
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .nav-item.active {
-            background: #2980b9;
+            background: var(--accent-gold);
+            color: #FFFFFF;
         }
 
         /* Main Content */
@@ -65,7 +84,7 @@
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         /* Cards */
@@ -77,21 +96,21 @@
         }
 
         .card {
-            background: white;
+            background: var(--card-bg);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
         }
 
         .card h3 {
-            color: #2c3e50;
+            color: var(--text-dark);
             margin-bottom: 10px;
         }
 
         .card .number {
             font-size: 32px;
-            font-weight: bold;
-            color: #3498db;
+            font-weight: 700;
+            color: var(--primary-blue);
         }
 
         /* Elections List */
@@ -99,7 +118,7 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .election-item {
@@ -122,12 +141,12 @@
         }
 
         .status.active {
-            background: #2ecc71;
+            background: var(--success);
             color: white;
         }
 
         .status.upcoming {
-            background: #f39c12;
+            background: var(--warning);
             color: white;
         }
 
@@ -144,15 +163,44 @@
             cursor: pointer;
             font-weight: bold;
             margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logout-btn-cover {
+            margin-top: 30px;
+            padding: 15px;
+            background: #34495e;
+            border-radius: 5px;
+        }
+
+        #userName {
+            font-weight: bold;
+        }
+
+        .btn-logout {
+            width: 100%;
+            margin-top: 10px;
+            background-color: #dd0505;
+            color: #ffffff;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            padding: 10px;
         }
 
         .btn-primary {
-            background: #3498db;
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-vote {
+            background: #22C55E;
             color: white;
         }
 
         .btn-secondary {
-            background: #95a5a6;
+            background: #9CA3AF;
             color: white;
         }
 
@@ -186,30 +234,33 @@
             .container {
                 flex-direction: column;
             }
-            
+
             .sidebar {
                 width: 100%;
                 padding: 10px;
             }
-            
+
             .cards {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">🗳️ UniVoteX</div>
-            <div class="nav-item active" onclick="showTab('dashboard')">📊 Dashboard</div>
-            <div class="nav-item" onclick="showTab('elections')">⚡ Current Elections</div>
-            <div class="nav-item" onclick="showTab('profile')">👤 Profile</div>
-            <div class="nav-item" onclick="showTab('results')">📈 Results</div>
-            <div style="margin-top: 30px; padding: 15px; background: #34495e; border-radius: 5px;">
-                <div style="font-weight: bold;" id="userName">Admin User</div>
-                <button class="btn btn-secondary" style="width: 100%; margin-top: 10px;" onclick= "window.location.href = 'group 4_1.html'">Logout</button>
+            <a href="#" class="nav-item active" onclick="showTab(event, 'dashboard')">📊 Dashboard</a>
+            <a href="#" class="nav-item" onclick="showTab(event, 'elections')">⚡ Current Elections</a>
+            <a href="voting-page.html" class="nav-item">🗳️ Vote Now</a>
+            <a href="#" class="nav-item" onclick="showTab(event, 'profile')">👤 Profile</a>
+            <a href="#" class="nav-item" onclick="showTab(event, 'results')">📈 Results</a>
+
+            <div class="logout-btn-cover">
+                <div id="userNameDisplay">Admin User</div>
+                <button class="btn-logout" onclick="window.location.href = 'group 4_1.html'">Logout</button>
             </div>
         </div>
 
@@ -245,6 +296,9 @@
                     <div id="electionsList">
                         <!-- Elections will be loaded here -->
                     </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="group 4_2.html" class="btn btn-vote">Go to Voting Page →</a>
+                    </div>
                 </div>
             </div>
 
@@ -257,6 +311,12 @@
 
                 <div id="currentElections">
                     <!-- Current elections will be loaded here -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="group 4_2.html" class="btn btn-vote" style="font-size: 18px; padding: 15px 30px;">
+                        🗳️ Click Here to Vote Now
+                    </a>
                 </div>
             </div>
 
@@ -295,13 +355,16 @@
                 <div class="profile">
                     <h3>Sample Election Results</h3>
                     <div style="margin: 20px 0;">
-                        <div style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <div
+                            style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
                             Candidate A: 45%
                         </div>
-                        <div style="background: #2ecc71; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <div
+                            style="background: #2ecc71; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
                             Candidate B: 35%
                         </div>
-                        <div style="background: #e74c3c; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <div
+                            style="background: #e74c3c; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
                             Candidate C: 20%
                         </div>
                     </div>
@@ -323,7 +386,8 @@
                 start: "2024-03-01",
                 end: "2024-03-07",
                 voters: 2500,
-                voted: 1875
+                voted: 1875,
+                candidates: ["John Smith", "Sarah Johnson", "Michael Brown"]
             },
             {
                 id: 2,
@@ -332,7 +396,8 @@
                 start: "2024-03-10",
                 end: "2024-03-15",
                 voters: 150,
-                voted: 112
+                voted: 112,
+                candidates: ["Dr. Robert Wilson", "Prof. Emma Davis"]
             },
             {
                 id: 3,
@@ -340,28 +405,27 @@
                 status: "upcoming",
                 start: "2024-04-01",
                 end: "2024-04-05",
-                voters: 800
+                voters: 800,
+                candidates: ["Alex Thompson", "Maria Garcia", "David Lee"]
             }
         ];
 
         // Initialize
-        window.onload = updateDashboard();
+        window.onload = updateDashboard;
 
         // Tab navigation
-        function showTab(tabName) {
-            // Hide all tabs
+        function showTab(event, tabName) {
+            event.preventDefault();
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.style.display = 'none');
-            
-            // Show selected tab
+
             document.getElementById(tabName).style.display = 'block';
-            
-            // Update active nav item
+
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => item.classList.remove('active'));
+
             event.currentTarget.classList.add('active');
-            
-            // Update content for specific tabs
+
             if (tabName === 'elections') loadCurrentElections();
         }
 
@@ -369,37 +433,38 @@
         function updateDashboard() {
             const activeElections = elections.filter(e => e.status === 'active').length;
             document.getElementById('activeCount').textContent = activeElections;
-            
+
             // Calculate total voters
             const totalVoters = elections.reduce((sum, e) => sum + e.voters, 0);
             document.getElementById('voterCount').textContent = totalVoters.toLocaleString();
-            
+
             // Calculate turnout
             const active = elections.filter(e => e.status === 'active');
             let totalVotes = 0;
             let totalPossible = 0;
-            
+
             active.forEach(e => {
                 totalVotes += e.voted || 0;
                 totalPossible += e.voters;
             });
-            
+
             const turnout = totalPossible > 0 ? Math.round((totalVotes / totalPossible) * 100) : 0;
             document.getElementById('turnout').textContent = turnout + '%';
-            
+
             // Load election list
             const container = document.getElementById('electionsList');
             container.innerHTML = '';
-            
+
             elections.forEach(election => {
                 const item = document.createElement('div');
                 item.className = 'election-item';
                 item.innerHTML = `
                     <div>
                         <strong>${election.title}</strong><br>
-                        <small>${election.start} to ${election.end}</small>
+                        <small>${election.start} to ${election.end}</small><br>
+                        <small>${election.candidates.length} candidates</small>
                     </div>
-                    <span class="status ${election.status}">${election.status}</span>
+                    <span class="status ${election.status}">${election.status.toUpperCase()}</span>
                 `;
                 container.appendChild(item);
             });
@@ -409,34 +474,36 @@
         function loadCurrentElections() {
             const container = document.getElementById('currentElections');
             container.innerHTML = '';
-            
+
             const activeElections = elections.filter(e => e.status === 'active');
-            
+
             if (activeElections.length === 0) {
                 container.innerHTML = '<p>No active elections at the moment.</p>';
                 return;
             }
-            
+
             activeElections.forEach(election => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.style.marginBottom = '15px';
-                
+
                 const turnout = election.voted ? Math.round((election.voted / election.voters) * 100) : 0;
-                
+
                 card.innerHTML = `
                     <h3>${election.title}</h3>
                     <p><strong>Duration:</strong> ${election.start} to ${election.end}</p>
                     <p><strong>Total Voters:</strong> ${election.voters}</p>
+                    <p><strong>Candidates:</strong> ${election.candidates.join(', ')}</p>
                     ${election.voted ? `<p><strong>Votes Cast:</strong> ${election.voted} (${turnout}%)</p>` : ''}
                     <div style="margin-top: 15px;">
+                        <a href="voting-page.html?election=${election.id}" class="btn btn-vote">Vote Now</a>
                         <button class="btn btn-primary" onclick="viewElection(${election.id})">View Details</button>
                         <button class="btn btn-secondary" onclick="manageElection(${election.id})">Manage</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
-        }        
+        }
 
         // View election
         function viewElection(id) {
@@ -451,7 +518,7 @@
         // Save profile
         function saveProfile() {
             const name = document.getElementById('nameInput').value;
-            document.getElementById('userName').textContent = name;
+            document.getElementById('userNameDisplay').textContent = name;
             alert('Profile saved successfully!');
         }
 
@@ -462,4 +529,5 @@
         }
     </script>
 </body>
+
 </html>
