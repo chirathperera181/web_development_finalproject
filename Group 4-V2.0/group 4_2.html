@@ -6,17 +6,25 @@
     <title>Cast Your Vote</title>
 
     <style>
-        *{
-           
+        * {
+
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
-        body {            
+
+        #body {
             min-height: 700px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: grey;
-            font-family:'Times New Roman', Times, serif;
+            background: white;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        body {
+            min-height: 700px;
+            justify-content: center;
+            align-items: center;
+            background: white
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .vote-container {
@@ -28,20 +36,21 @@
         }
 
         .card {
-            background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            ;
             padding: 20px;
             border-radius: 18px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             transition: transform 0.2s ease;
         }
 
-        .cardcandidate-card{
+        .cardcandidate-card {
             padding: 20px;
             border-radius: 18px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             transition: transform 0.2s ease;
         }
-        
+
 
         .header-card {
             color: white;
@@ -102,7 +111,7 @@
             align-items: center;
         }
 
-        .cardcandidate-card{
+        .cardcandidate-card {
             background: white;
         }
 
@@ -139,7 +148,7 @@
         .buttons {
             display: flex;
             gap: 12px;
-         
+
         }
 
         button {
@@ -149,8 +158,8 @@
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
-            
-            
+
+
         }
 
         .submit {
@@ -162,81 +171,100 @@
             background: #6a6fd6;
             color: white;
         }
+        .header{
+            color: #667eea;
+            text-align: center;
+            margin: 40px;
+            position: -webkit-sticky;
+        }
+        .footer{
+
+            height: 35px;
+            padding: 5px;
+            background-color: #6a6fd6;
+            text-align: center;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
+    <div class="header">
+        <h1>Select your preferred candidate</h1>
+    </div>>
+    <div id="body">
+        <div class="vote-container">
 
-    <div class="vote-container">
-
-        <div class="card header-card">
-            <div class="icon">✔</div>
-            <h1>Cast Your Vote</h1>
-            <h3>Select your preferred candidate</h3>
-        </div>
-
-        <div class="cardcandidate-card">
-            <label class="option">
-                <div class="left">
-                    <div class="badge a">A</div>
-                    <div>
-                        <span class="name">Wenuka Jayasooriya</span>
-                        <span class="party">Party 1</span>
-                    </div>
-                </div>
-                <input type="radio" name="vote" value="Wenuka Jayasooriya">
-            </label>
-        </div>
-
-        <div class="cardcandidate-card">
-            <label class="option">
-                <div class="left">
-                    <div class="badge b">B</div>
-                    <div>
-                        <span class="name">Chirath Perara</span>
-                        <span class="party">Party 2</span>
-                    </div>
-                </div>
-                <input type="radio" name="vote" value="Chirath Perara">
-            </label>
-        </div>
-
-        <div class="cardcandidate-card">
-            <label class="option">
-                <div class="left">
-                    <div class="badge c">C</div>
-                    <div>
-                        <span class="name">Dinil Kethaka</span>
-                        <span class="party">Party 3</span>
-                    </div>
-                </div>
-                <input type="radio" name="vote" value="Dinil Kethaka">
-            </label>
-        </div>
-
-        <div class="cardcandidate-card">
-            <label class="option">
-                <div class="left">
-                    <div class="badge d">D</div>
-                    <div>
-                        <span class="name">Naveen Kumar</span>
-                        <span class="party">Party 4</span>
-                    </div>
-                </div>
-                <input type="radio" name="vote" value="Naveen Kumar">
-            </label>
-        </div>
-
-        <div class="card action-card">
-            <div class="buttons">
-                <button class="submit" id="submitBtn">Submit Vote</button>
-
+            <div class="card header-card">
+                <div class="icon">✔</div>
+                <h2>Cast Your Vote</h2>
             </div>
+
+            <div class="cardcandidate-card">
+                <label class="option">
+                    <div class="left">
+                        <div class="badge a">A</div>
+                        <div>
+                            <span class="name">Wenuka Jayasooriya</span>
+                            <span class="party">Party 1</span>
+                        </div>
+                    </div>
+                    <input type="radio" name="vote" value="Wenuka Jayasooriya">
+                </label>
+            </div>
+
+            <div class="cardcandidate-card">
+                <label class="option">
+                    <div class="left">
+                        <div class="badge b">B</div>
+                        <div>
+                            <span class="name">Chirath Perara</span>
+                            <span class="party">Party 2</span>
+                        </div>
+                    </div>
+                    <input type="radio" name="vote" value="Chirath Perara">
+                </label>
+            </div>
+
+            <div class="cardcandidate-card">
+                <label class="option">
+                    <div class="left">
+                        <div class="badge c">C</div>
+                        <div>
+                            <span class="name">Dinil Kethaka</span>
+                            <span class="party">Party 3</span>
+                        </div>
+                    </div>
+                    <input type="radio" name="vote" value="Dinil Kethaka">
+                </label>
+            </div>
+
+            <div class="cardcandidate-card">
+                <label class="option">
+                    <div class="left">
+                        <div class="badge d">D</div>
+                        <div>
+                            <span class="name">Naveen Kumar</span>
+                            <span class="party">Party 4</span>
+                        </div>
+                    </div>
+                    <input type="radio" name="vote" value="Naveen Kumar">
+                </label>
+            </div>
+
+            <div class="card action-card">
+                <div class="buttons">
+                    <button class="submit" id="submitBtn">Submit Vote</button>
+
+                </div>
+            </div>
+
         </div>
 
     </div>
-
-    
+    <div class="footer">
+        @Ruhuna university cs department
+    </div>
 
     <script>
         const radios = document.querySelectorAll('input[name="vote"]');

@@ -15,11 +15,10 @@
         }
 
         .header {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
+            text-align: center;
             padding: 15px 30px;
-            color: rgb(30, 66, 227);
+            color: #667eea;
         }
 
         .header h1 {
@@ -31,7 +30,6 @@
         }
 
         .main-container {
-            display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 30px;
             padding: 30px;
@@ -56,10 +54,11 @@
             text-align: center;
             font-size: 24px;
         }
-        
-        #winnerName{
+
+        #winnerName {
             font-size: 50px;
         }
+
         .stats p {
             margin: 8px 0;
         }
@@ -114,14 +113,24 @@
             border-radius: 12px;
             text-align: center;
         }
+
+        .logged-user {
+            text-align: right;
+        }
+        .footer {
+            height: 35px;
+            padding: 5px;
+            background-color: #6a6fd6;
+            text-align: center;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
-
+    <div class="logged-user">Logged in as: <b id="loggedUserName"></b></div>
     <div class="header">
         <h1>Election Results</h1>
-        <div class="logged-user">Logged in as: <b id="loggedUserName"></b></div>
     </div>
 
     <div class="main-container">
@@ -159,6 +168,9 @@
             <button onclick="confirmReset()">Yes, Reset</button>
             <button onclick="closePopup()">Cancel</button>
         </div>
+    </div>
+    <div class="footer">
+        @Ruhuna university cs department
     </div>
 
     <script>
