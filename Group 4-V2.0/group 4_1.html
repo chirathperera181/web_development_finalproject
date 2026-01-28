@@ -24,7 +24,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 80vh;
             color: white;
         }
 
@@ -66,17 +66,12 @@
             text-decoration: none;
             color: whitesmoke;
         }
-
-        header {
+        .header{
+            text-align: center;
             color: #667eea;
-            position: fixed;
-            padding: 2rem;
-            
+            position: sticky;
         }
-        h1{width: 100%;
-        text-align: center;}
-        footer{
-
+        .footer{
             height: 35px;
             padding: 5px;
             background-color: #667eea;
@@ -86,9 +81,9 @@
 </head>
 
 <body>
-    <header>
+    <div class="header">
         <h1>Voting System</h1>
-    </header>
+    </div>
     <div class="login-page">
         <div class="login-container">
             <div class="login-header">
@@ -108,7 +103,7 @@
             </form>
         </div>
     </div>
-    <footer >@Ruhuna university cs department</footer>
+    <div class="footer" >@Ruhuna university cs department</div>
     <script>
         function loginUser(event) {
             event.preventDefault();
