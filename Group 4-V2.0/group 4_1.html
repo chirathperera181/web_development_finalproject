@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>UniVote | Login</title>
+    <title>Votign-System | Login</title>
     <style>
         
         *{
-            color: white;
+            color: #FFFFFF;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
         body{
-            background-color: rgb(241, 236, 236);
+            background-color: #F1F5F9;
         }
         .login-header {
             text-align: center;
@@ -26,7 +26,7 @@
         }
 
         .login-container {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -39,6 +39,7 @@
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             color: black;
+            border-color: #CBD5E1;
         }
 
         form {
@@ -46,7 +47,7 @@
         }
 
         button {
-            background: rgb(0, 55, 255);
+            background: #F59E0B;
             color: white;
             border: none;
             padding: 15px 40px;
@@ -55,10 +56,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 
         }
-
-        a {
-            text-decoration: none;
-            color: whitesmoke;
+        h3{
+            color: #E5E7EB;
         }
     </style>
 </head>
@@ -66,7 +65,7 @@
 <body class="login-page">
     <div class="login-container">
         <div class="login-header">
-            <h1>Voting System</h1>
+            <h1>UniVoteX</h1>
             <h3>Login here</h3>
         </div>
 
@@ -76,7 +75,7 @@
                 <input type="text" id="username" class="form-control" required>
             </div><br>
             <div class="form-group">
-                <label> Password: </label>
+                <label>Password: </label>
                 <input type="password" id="password" class="form-control" required>
             </div><br>
             <button type="submit">Login</button>
