@@ -7,12 +7,12 @@
     <title>Election Dashboard - Admin Panel</title>
     <style>
         :root {
-            --bg-main: #F1F5F9;
-            --sidebar-bg: #1E3A8A;
-            --sidebar-bg-2: #2563EB;
-            --primary-blue: #2563EB;
+            --bg-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --sidebar-bg: #667eea;
+            --sidebar-bg-2: #764ba2;
+            --primary-blue: #667eea;
             --accent-gold: #F59E0B;
-            --card-bg: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.95);
             --text-dark: #111827;
             --text-muted: #6B7280;
             --success: #22C55E;
@@ -42,6 +42,7 @@
             background: linear-gradient(180deg, var(--sidebar-bg), var(--sidebar-bg-2));
             color: white;
             padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
@@ -56,21 +57,24 @@
             padding: 12px 15px;
             margin: 5px 0;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             color: #E5E7EB;
             background: transparent;
             border-radius: 8px;
             text-decoration: none;
             display: block;
+            border: 2px solid transparent;
         }
 
         .nav-item:hover {
             background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
         }
 
         .nav-item.active {
             background: var(--accent-gold);
             color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* Main Content */
@@ -80,11 +84,23 @@
         }
 
         .header {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 16px;
         }
 
         /* Cards */
@@ -98,27 +114,50 @@
         .card {
             background: var(--card-bg);
             padding: 20px;
-            border-radius: 14px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
         }
 
         .card h3 {
             color: var(--text-dark);
             margin-bottom: 10px;
+            font-size: 18px;
         }
 
         .card .number {
             font-size: 32px;
             font-weight: 700;
-            color: var(--primary-blue);
+            background: linear-gradient(to right, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 5px;
         }
 
         /* Elections List */
+        /* Elections List */
         .elections {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .elections h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 24px;
         }
 
         .election-item {
@@ -127,6 +166,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .election-item:hover {
+            background-color: rgba(248, 249, 250, 0.5);
         }
 
         .election-item:last-child {
@@ -157,21 +201,24 @@
 
         /* Buttons */
         .btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             margin: 5px;
             text-decoration: none;
             display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         .logout-btn-cover {
             margin-top: 30px;
-            padding: 15px;
-            background: #34495e;
-            border-radius: 5px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            text-align: center;
         }
 
         #userName {
@@ -180,37 +227,60 @@
 
         .btn-logout {
             width: 100%;
-            margin-top: 10px;
-            background-color: #dd0505;
+            margin-top: 15px;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
             color: #ffffff;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 50px;
             border: none;
-            padding: 10px;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        .btn-primary {
-            background: var(--primary-blue);
-            color: white;
+        .btn-logout:hover {
+            background: linear-gradient(to right, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         .btn-vote {
-            background: #22C55E;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #667eea, #764ba2);
             color: white;
         }
 
         .btn-secondary {
-            background: #9CA3AF;
+            background: linear-gradient(to right, #9CA3AF, #6B7280);
             color: white;
         }
 
         /* Profile */
         .profile {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 16px;
             max-width: 600px;
             margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
         }
 
         .form-group {
@@ -219,15 +289,28 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             color: #2c3e50;
+            font-weight: 600;
+            font-size: 15px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 14px 16px;
+            border: 2px solid #e1e5eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -254,7 +337,7 @@
             <div class="logo">🗳️ UniVoteX</div>
             <a href="#" class="nav-item active" onclick="showTab(event, 'dashboard')">📊 Dashboard</a>
             <a href="#" class="nav-item" onclick="showTab(event, 'elections')">⚡ Current Elections</a>
-            <a href="voting-page.html" class="nav-item">🗳️ Vote Now</a>
+            <a href="group 4_2.html" class="nav-item">🗳️ Vote Now</a>
             <a href="#" class="nav-item" onclick="showTab(event, 'profile')">👤 Profile</a>
             <a href="#" class="nav-item" onclick="showTab(event, 'results')">📈 Results</a>
 
@@ -312,7 +395,7 @@
                 <div id="currentElections">
                     <!-- Current elections will be loaded here -->
                 </div>
-                
+
                 <div style="text-align: center; margin-top: 30px;">
                     <a href="group 4_2.html" class="btn btn-vote" style="font-size: 18px; padding: 15px 30px;">
                         🗳️ Click Here to Vote Now
