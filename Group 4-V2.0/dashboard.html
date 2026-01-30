@@ -126,9 +126,11 @@
             margin-bottom: 10px;
         }
 
-        .active {
-            background: blue;
+        .status-active {
+            background-color: #2563eb;
+            /* blue only around ACTIVE */
         }
+
 
         /* Sections */
         .section {
@@ -138,20 +140,24 @@
         .section.active {
             display: block;
         }
+
+        .section-active {
+            display: block;
+        }
     </style>
 </head>
 
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
-    <h2>🗳️ UniVoteX</h2>
-    <a class="nav active" onclick="showSection('dashboard', this)">Dashboard</a>
-    <a class="nav" onclick="showSection('active', this)">Active Elections</a>
-    <a class="nav" onclick="showSection('results', this)">Results</a>
-    <a class="nav" onclick="showSection('profile', this)">Profile</a>
-    <a onclick="window.location='group 4_1.html'">Logout</a>
-</div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>🗳️ UniVoteX</h2>
+        <a class="nav active" onclick="showSection('dashboard', this)">Dashboard</a>
+        <a class="nav" onclick="showSection('active', this)">Active Elections</a>
+        <a class="nav" onclick="showSection('results', this)">Results</a>
+        <a class="nav" onclick="showSection('profile', this)">Profile</a>
+        <a onclick="window.location='group 4_1.html'">Logout</a>
+    </div>
 
     <!-- Main Content -->
     <div class="main">
@@ -184,14 +190,14 @@
         <div id="active" class="section">
             <div class="elections">
                 <div class="election">
-                    <span class="status active">ACTIVE</span>
+                    <span class="status status-active">ACTIVE</span>
                     <h4>Student Council Election 2026</h4>
                     <p>Voters: 2,500</p>
                     <p>Votes Cast: 1,950</p>
                 </div>
 
                 <div class="election">
-                    <span class="status active">ACTIVE</span>
+                    <span class="status status-active">ACTIVE</span>
                     <h4>Faculty Board Election</h4>
                     <p>Voters: 150</p>
                     <p>Votes Cast: 120</p>
