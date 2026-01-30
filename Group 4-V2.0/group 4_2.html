@@ -3,83 +3,205 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cast Your Vote</title>
-
+    <title>UniVoteX - Cast Your Vote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
-
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
-        #body {
-            min-height: 700px;
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - Matching Login Page */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+
+        .header-title p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .election-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .election-selector label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        .election-select {
+            padding: 10px 15px;
+            border: 2px solid #e1e5eb;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            font-size: 14px;
+            font-weight: 500;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 250px;
+        }
+
+        .election-select:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: white;
-            font-family: 'Times New Roman', Times, serif;
-        }
-        body {
-            min-height: 700px;
-            justify-content: center;
-            align-items: center;
-            background: white;
-            font-family: 'Times New Roman', Times, serif;
+            padding: 30px 20px;
         }
 
         .vote-container {
             width: 100%;
-            max-width: 420px;
+            max-width: 650px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            ;
-            padding: 20px;
-            border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s ease;
-        }
-
-        .cardcandidate-card {
-            padding: 20px;
-            border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s ease;
-        }
-
-
+        /* Cards */
         .header-card {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             color: white;
-            text-align: center;
-            padding-bottom: 25px;
-            background-color: #c15f7c;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        .header-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
         }
 
         .icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 10px;
-            background: #020ddb;
-            color: #fff;
-            border-radius: 100%;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 22px;
+            font-size: 32px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+            margin: 0;
+            /* Remove auto margin */
         }
 
-        h1 {
-            margin: 5px 0;
+        .header-card h2 {
             font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
-        h3 {
-            color: #e1d7d7;
+        .header-card p {
+            color: rgba(255, 255, 255, 0.9);
             font-size: 14px;
+        }
+
+        .header-content-right {
+            flex: 1;
+        }
+
+        .header-content-right h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .header-content-right p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .candidate-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            /* Slightly increased padding */
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .candidate-card:hover {
+            transform: translateY(-3px);
+            border-color: #667eea;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .candidate-card.selected {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
         }
 
         .option {
@@ -89,11 +211,6 @@
             cursor: pointer;
         }
 
-        .candidate-card:hover {
-            transform: translateY(-3px);
-            border: 2px solid #6a6fd6;
-        }
-
         .left {
             display: flex;
             align-items: center;
@@ -101,211 +218,697 @@
         }
 
         .badge {
-            width: 40px;
-            height: 40px;
-            border-radius: 100%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             color: white;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .cardcandidate-card {
-            background: white;
+            flex-shrink: 0;
         }
 
         .a {
-            background: linear-gradient(135deg, #8fa6d3 0%, #6a6fd6 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .b {
-            background: linear-gradient(135deg, #83cba4 0%, #4caf50 100%);
+            background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
         }
 
         .c {
-            background: linear-gradient(135deg, #fac06e 0%, #ff9800 100%);
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
         }
 
         .d {
-            background: linear-gradient(135deg, #50bce0 0%, #2196f3 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+        }
+
+        .candidate-info {
+            flex: 1;
+            min-width: 0;
         }
 
         .name {
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 16px;
+            color: #2c3e50;
             display: block;
+            margin-bottom: 4px;
         }
 
         .party {
             font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .slogan {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 5px;
+            font-style: italic;
         }
 
         input[type="radio"] {
-            transform: scale(1.3);
-            accent-color: #6a6fd6;
+            transform: scale(1.4);
+            accent-color: #667eea;
+            cursor: pointer;
+        }
+
+        /* Action Card */
+        .action-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            /* Increased padding */
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .buttons {
             display: flex;
-            gap: 12px;
-
+            gap: 15px;
         }
 
         button {
             flex: 1;
-            padding: 14px;
+            padding: 16px;
             border: none;
             border-radius: 12px;
             font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
-
-
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .submit {
-            background: #dfe3ea;
-            color: #888;
+            background: #e5e7eb;
+            color: #6b7280;
         }
 
         .submit.active {
-            background: #6a6fd6;
+            background: linear-gradient(to right, #667eea, #764ba2);
             color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
-        .header{
-            color: #667eea;
-            text-align: center;
-            margin: 40px;
-            position: -webkit-sticky;
-        }
-        .footer{
 
-            height: 35px;
-            padding: 5px;
-            background-color: #6a6fd6;
+        .submit.active:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-btn {
+            background: #f8f9fa;
+            color: #64748b;
+            border: 2px solid #e5e7eb;
+        }
+
+        .back-btn:hover {
+            background: #e5e7eb;
+        }
+
+        /* Footer - Matching Login Page */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
             text-align: center;
+            color: #2c3e50;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .footer p:last-child {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 0 20px;
+                text-align: center;
+            }
+
+            .election-selector {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .election-select {
+                min-width: 200px;
+            }
+
+            .vote-container {
+                max-width: 95%;
+            }
+
+            .header-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .header-content-right {
+                width: 100%;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .candidate-card {
+                padding: 15px;
+            }
+
+            .badge {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .name {
+                font-size: 14px;
+            }
+
+            .party {
+                font-size: 12px;
+            }
+
+            .header-card {
+                padding: 20px;
+            }
+
+            .icon {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+
+            .header-content-right h2 {
+                font-size: 24px;
+            }
+
+            .header-content-right p {
+                font-size: 14px;
+            }
+        }
+
+        /* Popup Modal Styles */
+        .popup-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .popup-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .popup-content h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .popup-content p {
+            color: #64748b;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .voted-for {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .popup-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dashboard-btn {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 2px solid #e5e7eb;
+        }
+
+        .dashboard-btn:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+        }
+
+        .results-btn:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Responsive popup */
+        @media (max-width: 480px) {
+            .popup-content {
+                padding: 30px 20px;
+            }
+
+            .popup-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- Header -->
     <div class="header">
-        <h1>Select your preferred candidate</h1>
-    </div>>
-    <div id="body">
-        <div class="vote-container">
-
-            <div class="card header-card">
-                <div class="icon">✔</div>
-                <h2>Cast Your Vote</h2>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">🗳️</div>
+                <div class="header-title">
+                    <h1>UniVoteX</h1>
+                    <p>Secure Online Voting Portal</p>
+                </div>
             </div>
 
-            <div class="cardcandidate-card">
+            <div class="election-selector">
+                <label for="electionSelect">You are going to Vote for:</label>
+                <select id="electionSelect" class="election-select">
+                    <option value="president">Student Council President 2024</option>
+                    <option value="vice_president">Vice President Election</option>
+                    <option value="sports">Sports Committee Election</option>
+                    <option value="cultural">Cultural Committee Election</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="vote-container">
+            <!-- Header Card -->
+            <!-- Header Card -->
+            <div class="header-card">
+                <div class="icon">✓</div>
+                <div class="header-content-right">
+                    <h2 id="electionTitle">Student Council President 2024</h2>
+                    <p>Select your preferred candidate below</p>
+                </div>
+            </div>
+
+            <!-- Candidate Cards -->
+            <div class="candidate-card" id="candidate1">
                 <label class="option">
                     <div class="left">
                         <div class="badge a">A</div>
-                        <div>
+                        <div class="candidate-info">
                             <span class="name">Wenuka Jayasooriya</span>
-                            <span class="party">Party 1</span>
+                            <span class="party">Progressive Student Alliance</span>
+                            <span class="slogan">"Building a Better Tomorrow"</span>
                         </div>
                     </div>
                     <input type="radio" name="vote" value="Wenuka Jayasooriya">
                 </label>
             </div>
 
-            <div class="cardcandidate-card">
+            <div class="candidate-card" id="candidate2">
                 <label class="option">
                     <div class="left">
                         <div class="badge b">B</div>
-                        <div>
-                            <span class="name">Chirath Perara</span>
-                            <span class="party">Party 2</span>
+                        <div class="candidate-info">
+                            <span class="name">Chirath Perera</span>
+                            <span class="party">Youth Innovation Movement</span>
+                            <span class="slogan">"Innovation for All"</span>
                         </div>
                     </div>
-                    <input type="radio" name="vote" value="Chirath Perara">
+                    <input type="radio" name="vote" value="Chirath Perera">
                 </label>
             </div>
 
-            <div class="cardcandidate-card">
+            <div class="candidate-card" id="candidate3">
                 <label class="option">
                     <div class="left">
                         <div class="badge c">C</div>
-                        <div>
+                        <div class="candidate-info">
                             <span class="name">Dinil Kethaka</span>
-                            <span class="party">Party 3</span>
+                            <span class="party">Student Reform Party</span>
+                            <span class="slogan">"Change We Believe In"</span>
                         </div>
                     </div>
                     <input type="radio" name="vote" value="Dinil Kethaka">
                 </label>
             </div>
 
-            <div class="cardcandidate-card">
+            <div class="candidate-card" id="candidate4">
                 <label class="option">
                     <div class="left">
                         <div class="badge d">D</div>
-                        <div>
+                        <div class="candidate-info">
                             <span class="name">Naveen Kumar</span>
-                            <span class="party">Party 4</span>
+                            <span class="party">Unity Student Front</span>
+                            <span class="slogan">"Together We Progress"</span>
                         </div>
                     </div>
                     <input type="radio" name="vote" value="Naveen Kumar">
                 </label>
             </div>
 
-            <div class="card action-card">
+            <!-- Action Card -->
+            <div class="action-card">
                 <div class="buttons">
-                    <button class="submit" id="submitBtn">Submit Vote</button>
-
+                    <button class="back-btn" onclick="window.location.href='dashboard.html'">
+                        ← Back
+                    </button>
+                    <button class="submit" id="submitBtn">
+                        Submit Vote →
+                    </button>
                 </div>
             </div>
-
         </div>
-
     </div>
+
+    <!-- Footer -->
     <div class="footer">
-        @Ruhuna university cs department
+        <div class="footer-content">
+            <p>UniVoteX - Secure Online Voting System</p>
+            <p>&copy; 2026 Ruhuna University Computer Science Department | Created By Group 4</p>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="votePopup" class="popup-modal" style="display: none;">
+        <div class="popup-content">
+            <div class="popup-icon">🎉</div>
+            <h2>Vote Submitted Successfully!</h2>
+            <p>Thank you for participating in the democratic process.</p>
+            <p class="voted-for">You voted for: <strong id="votedCandidate">Candidate Name</strong></p>
+
+            <div class="popup-buttons">
+                <button class="popup-btn dashboard-btn" onclick="goToDashboard()">
+                    ← Go to Dashboard
+                </button>
+                <button class="popup-btn results-btn" onclick="goToResults()">
+                    View Results →
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
-        const radios = document.querySelectorAll('input[name="vote"]');
-        const submitBtn = document.getElementById("submitBtn");
-
         // Initialize votes in sessionStorage if not present
         if (!sessionStorage.getItem("votes")) {
             const initialVotes = {
                 "Wenuka Jayasooriya": 0,
-                "Chirath Perara": 0,
+                "Chirath Perera": 0,
                 "Dinil Kethaka": 0,
                 "Naveen Kumar": 0
             };
             sessionStorage.setItem("votes", JSON.stringify(initialVotes));
         }
 
+        // DOM Elements
+        const electionSelect = document.getElementById("electionSelect");
+        const electionTitle = document.getElementById("electionTitle");
+        const radios = document.querySelectorAll('input[name="vote"]');
+        const submitBtn = document.getElementById("submitBtn");
+        const candidateCards = document.querySelectorAll('.candidate-card');
+
+        // Election data with different candidates for each election
+        const elections = {
+            "president": {
+                title: "Student Council President 2024",
+                candidates: [
+                    { name: "Wenuka Jayasooriya", party: "Progressive Student Alliance", slogan: "Building a Better Tomorrow", badge: "a" },
+                    { name: "Chirath Perera", party: "Youth Innovation Movement", slogan: "Innovation for All", badge: "b" },
+                    { name: "Dinil Kethaka", party: "Student Reform Party", slogan: "Change We Believe In", badge: "c" },
+                    { name: "Naveen Kumar", party: "Unity Student Front", slogan: "Together We Progress", badge: "d" }
+                ]
+            },
+            "vice_president": {
+                title: "Vice President Election",
+                candidates: [
+                    { name: "Saman Perera", party: "Progressive Alliance", slogan: "Supporting Student Growth", badge: "a" },
+                    { name: "Nimal Fernando", party: "Innovation Front", slogan: "Empowering Students", badge: "b" },
+                    { name: "Kamal Silva", party: "Reform Party", slogan: "New Vision for All", badge: "c" }
+                ]
+            },
+            "sports": {
+                title: "Sports Committee Election",
+                candidates: [
+                    { name: "Rajitha Silva", party: "Sports Development Team", slogan: "Sports for Everyone", badge: "a" },
+                    { name: "Dilshan Perera", party: "Athlete's Voice", slogan: "Champion Mindset", badge: "b" },
+                    { name: "Supun Fernando", party: "Active Campus Movement", slogan: "Fitness First", badge: "c" }
+                ]
+            },
+            "cultural": {
+                title: "Cultural Committee Election",
+                candidates: [
+                    { name: "Nadeesha Gamage", party: "Arts & Culture Front", slogan: "Celebrating Diversity", badge: "a" },
+                    { name: "Piyumi Rathnayake", party: "Cultural Unity", slogan: "Heritage & Innovation", badge: "b" },
+                    { name: "Chamodi Silva", party: "Creative Minds", slogan: "Art for All", badge: "c" }
+                ]
+            }
+        };
+
+        // Update election display
+        function updateElectionDisplay() {
+            const selectedElection = electionSelect.value;
+            const election = elections[selectedElection];
+
+            // Update title
+            electionTitle.textContent = election.title;
+
+            // Update candidate cards
+            candidateCards.forEach((card, index) => {
+                if (index < election.candidates.length) {
+                    const candidate = election.candidates[index];
+                    card.style.display = 'block';
+
+                    // Update candidate info
+                    const nameElement = card.querySelector('.name');
+                    const partyElement = card.querySelector('.party');
+                    const sloganElement = card.querySelector('.slogan');
+                    const badgeElement = card.querySelector('.badge');
+                    const radioElement = card.querySelector('input[type="radio"]');
+
+                    nameElement.textContent = candidate.name;
+                    partyElement.textContent = candidate.party;
+                    sloganElement.textContent = `"${candidate.slogan}"`;
+                    badgeElement.className = `badge ${candidate.badge}`;
+                    badgeElement.textContent = String.fromCharCode(65 + index); // A, B, C, D
+                    radioElement.value = candidate.name;
+
+                    // Update card ID
+                    card.id = `candidate${index + 1}`;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Reset selection
+            radios.forEach(radio => radio.checked = false);
+            submitBtn.classList.remove("active");
+            updateCardSelection();
+        }
+
+        // Update candidate card selection styling
+        function updateCardSelection() {
+            candidateCards.forEach(card => {
+                const radio = card.querySelector('input[type="radio"]');
+                if (radio.checked) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+        }
+
+        // Event Listeners
+        electionSelect.addEventListener('change', updateElectionDisplay);
+
         radios.forEach(radio => {
-            radio.addEventListener("change", () => {
+            radio.addEventListener('change', () => {
                 submitBtn.classList.add("active");
+                updateCardSelection();
+            });
+        });
+
+        // Add click event to entire candidate card
+        candidateCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.type !== 'radio') {
+                    const radio = card.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    submitBtn.classList.add("active");
+                    updateCardSelection();
+                }
             });
         });
 
         submitBtn.addEventListener("click", () => {
             const selected = document.querySelector('input[name="vote"]:checked');
             if (selected) {
-                // Increment vote for the selected candidate
+                // Get current votes
                 const votes = JSON.parse(sessionStorage.getItem("votes"));
+
+                // Initialize vote for this candidate if not exists
+                if (!votes[selected.value]) {
+                    votes[selected.value] = 0;
+                }
+
+                // Increment vote
                 votes[selected.value] += 1;
                 sessionStorage.setItem("votes", JSON.stringify(votes));
 
-                // Store last voted candidate to show on thank you page
+                // Store last voted candidate
                 sessionStorage.setItem("lastVote", selected.value);
+                sessionStorage.setItem("lastElection", electionSelect.value);
 
-                // Redirect to thank you page
-                window.location.href = "group 4_3.html";
+                // Show the selected candidate name in popup
+                document.getElementById("votedCandidate").textContent = selected.value;
+
+                // Show popup
+                document.getElementById("votePopup").style.display = "flex";
+
+                // Reset form
+                radios.forEach(radio => radio.checked = false);
+                submitBtn.classList.remove("active");
+                updateCardSelection();
             } else {
                 alert("Please select a candidate first.");
             }
         });
-    </script>
 
+        // Popup navigation functions
+        function goToDashboard() {
+            // Close popup
+            document.getElementById("votePopup").style.display = "none";
+
+            // Redirect to dashboard (your dashboard page)
+            window.location.href = "dashboard.html";
+            // Or if you want to go back to the login page:
+            // window.location.href = "group 4_1.html";
+        }
+
+        function goToResults() {
+            // Close popup
+            document.getElementById("votePopup").style.display = "none";
+
+            // Redirect to results page
+            window.location.href = "group 4_4.html";
+            // If you don't have a separate results page yet, you can redirect to dashboard
+            // window.location.href = "group 4_dashboard.html#results";
+        }
+
+        // Initialize
+        updateElectionDisplay();
+        updateCardSelection();
+    </script>
 </body>
 
 </html>
