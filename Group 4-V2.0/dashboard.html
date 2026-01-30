@@ -75,6 +75,12 @@
             font-size: 14px;
         }
 
+        .ProfileCard {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
         /* Cards */
         .cards {
             display: grid;
@@ -102,48 +108,57 @@
             margin-top: 10px;
         }
 
-        /* Elections */
-        .elections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            background: #f1f5f9;
-        }
-
-        .election {
-            background: #fff;
-            padding: 20px;
+        .profile-card {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);}
 
-        .status {
-            display: inline-block;
-            padding: 4px 12px;
-            font-size: 12px;
-            border-radius: 20px;
-            color: #fff;
-            margin-bottom: 10px;
-        }
+            /* Elections */
+            .elections {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+                background: #f1f5f9;
+            }
 
-        .status-active {
-            background-color: #2563eb;
-            /* blue only around ACTIVE */
-        }
+            .election {
+                background: #fff;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+
+            .status {
+                display: inline-block;
+                padding: 4px 12px;
+                font-size: 12px;
+                border-radius: 20px;
+                color: #fff;
+                margin-bottom: 10px;
+            }
+
+            .status-active {
+                background-color: #2563eb;
+                /* blue only around ACTIVE */
+            }
 
 
-        /* Sections */
-        .section {
-            display: none;
-        }
+            /* Sections */
+            .section {
+                display: none;
+            }
 
-        .section.active {
-            display: block;
-        }
+            .section.active {
+                display: block;
+            }
 
-        .section-active {
-            display: block;
-        }
+            .section-active {
+                display: block;
+            }
     </style>
 </head>
 
@@ -154,7 +169,7 @@
         <h2>🗳️ UniVoteX</h2>
         <a class="nav active" onclick="showSection('dashboard', this)">Dashboard</a>
         <a class="nav" onclick="showSection('active', this)">Active Elections</a>
-        <a class="nav" onclick="showSection('results', this)">Results</a>
+        <a onclick="window.location='group 4_4.html'">Results</a>
         <a class="nav" onclick="showSection('profile', this)">Profile</a>
         <a onclick="window.location='group 4_1.html'">Logout</a>
     </div>
@@ -213,15 +228,23 @@
 
         <!-- PROFILE -->
         <div id="profile" class="section">
-            <h2>Admin Profile</h2>
-            <p style="margin-top: 10px;">Name: Admin User</p>
-            <p>Email: admin@votesys.com</p>
-            <p>Role: Administrator</p>
+            <div class="profile-card ">
+                <h2 style="margin-bottom: 20px;">👤 Profile</h2>
+                <p><strong>Name:</strong> <span id="profileName">Admin User</span></p>
+                <p><strong>Username:</strong> <span id="profileUsername">admin</span></p>
+                <p><strong>Role:</strong> <span id="profileRole">Admin</span></p>
+            </div>
         </div>
+
 
     </div>
 
     <script>
+
+        const loggedUser = sessionStorage.getItem("loggedUser") || "Admin User";
+        document.getElementById("profileName").textContent = loggedUser;
+        document.getElementById("profileUsername").textContent = loggedUser
+
         function updateTime() {
             document.getElementById("time").textContent =
                 new Date().toLocaleString();

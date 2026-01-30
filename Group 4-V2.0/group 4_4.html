@@ -97,7 +97,7 @@
         button {
             background-color: red;
             color: white;
-            padding: 16px 35px;
+            padding: 16px;
             border: none;
             border-radius: 50px;
             font-weight: 600;
@@ -109,6 +109,7 @@
             justify-content: center;
             gap: 10px;
             text-decoration: none;
+            
         }
 
         a {
@@ -130,6 +131,18 @@
             padding: 30px;
             border-radius: 12px;
             text-align: center;
+        }
+        .dashboard{
+            background-color:#1e293b;
+            width: 300px;
+        }
+        .reset{
+            background-color: #764ba2;
+            width: 300px;
+        }
+        .logout{
+            background-color: red;
+            width: 300px;
         }
     </style>
 </head>
@@ -164,8 +177,9 @@
     </div>
 
     <div class="buttons">
-        <button onclick="window.location='group 4_1.html'">Logout</button>
-        <button onclick="openPopup()">Reset Statistics</button>
+        <button class="logout" onclick="window.location='group 4_1.html'">Logout</button>
+        <button class="reset" onclick="openPopup()">Reset Statistics</button>
+        <button class="dashboard" onclick="window.location='dashboard.html'">Back to dashboard</button>
     </div>
 
 
