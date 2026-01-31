@@ -115,7 +115,8 @@
             background: #ffffff;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);}
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
 
         .btn-vote-now {
             background: #1e40af;
@@ -126,9 +127,11 @@
             margin-left: 450px;
             cursor: pointer;
         }
+
         .btn-vote-now:hover {
             background: #1476ff;
         }
+
         /* Elections */
         .elections {
             display: grid;
@@ -137,24 +140,24 @@
             background: #f1f5f9;
         }
 
-            .election {
-                background: #fff;
-                padding: 20px;
-                border-radius: 12px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            }
+        .election {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
 
-            .status {
-                display: inline-block;
-                padding: 4px 12px;
-                font-size: 12px;
-                border-radius: 20px;
-                color: #fff;
-                margin-bottom: 10px;
-            }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 20px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
 
         .status-active {
-            background-color:  #32CD32;
+            background-color: #32CD32;
             /* blue only around ACTIVE */
         }
 
@@ -164,18 +167,42 @@
             color: #ffffff;
         }
 
-            /* Sections */
-            .section {
-                display: none;
-            }
+        /* Sections */
+        .section {
+            display: none;
+        }
 
-            .section.active {
-                display: block;
-            }
+        .section.active {
+            display: block;
+        }
 
-            .section-active {
-                display: block;
-            }
+        .section-active {
+            display: block;
+        }
+
+        .greeting {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .greeting p {
+            font-weight: bold;
+        }
+
+        .dashboard-vote-click {
+            border-radius: 10px;
+            background: #32CD32;
+            color: #f1f5f9;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dashboard-vote-click:hover {
+            outline: 2px solid #1e40af;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 
@@ -185,7 +212,7 @@
     <div class="sidebar">
         <h2>🗳️ UniVoteX</h2>
         <a class="nav active" onclick="showSection('dashboard', this)">Dashboard</a>
-        <a class="nav" onclick="showSection('active', this)">Active Elections</a>
+        <a class="nav" onclick="showSection('active', this)">Elections</a>
         <a onclick="window.location.href='group 4_4.html'">Results</a>
         <a class="nav" onclick="showSection('profile', this)">Profile</a>
         <a onclick="window.location.href='group 4_1.html'">Logout</a>
@@ -202,10 +229,17 @@
 
         <!-- DASHBOARD -->
         <div id="dashboard" class="section active">
+            <div class="greeting">
+                <p class="welcome">Welcome! <span id="greeting-user">User</span></p>
+            </div>
             <div class="cards">
                 <div class="card">
-                    <h3>Active Elections</h3>
-                    <p>1</p>
+                    <h2>Happening Now...</h2>
+                    <h3>You have one active election to vote.</h3>
+                    <h4>Election Name: Student Council Election</h4>
+                    <h4>Time remaining: 2d 4hours</h4>
+                    <button class="dashboard-vote-click" onclick="window.location.href='group 4_2.html'">Click here to
+                        vote</button>
                 </div>
                 <div class="card">
                     <h3>Registered Voters</h3>
@@ -223,16 +257,16 @@
             <div class="elections">
                 <div class="election">
                     <span class="status status-active">ACTIVE</span>
-                    <h4>Student Council Election 2026</h4>
-                    <p>Voters: 2500</p>
+                    <h4>Student Council Election</h4>
+                    <p>Voters: 3000</p>
                     <p>Votes Cast: 1,950</p>
                     <button class="btn-vote-now" onclick="window.location.href='group 4_2.html'">Vote Now</button>
                 </div>
 
                 <div class="election">
                     <span class="status status-pending">PENDING</span>
-                    <h4>Faculty Board Election</h4>
-                    <p>Voters: 150</p>
+                    <h4>Sports Council Election</h4>
+                    <p>Voters: 2220</p>
                     <p>Votes Cast: Election not started yet.</p>
                 </div>
                 <div class="election">
@@ -243,20 +277,20 @@
                 </div>
                 <div class="election">
                     <span class="status status-pending">PENDING</span>
-                    <h4>Faculty Board Election</h4>
-                    <p>Voters: 150</p>
+                    <h4>Cultural Commitee Election</h4>
+                    <p>Voters: 3000</p>
                     <p>Votes Cast: Election not started yet.</p>
                 </div>
                 <div class="election">
                     <span class="status status-pending">PENDING</span>
-                    <h4>Faculty Board Election</h4>
-                    <p>Voters: 150</p>
+                    <h4>Batch Representative Election - FOS 47</h4>
+                    <p>Voters: 650</p>
                     <p>Votes Cast: Election not started yet.</p>
                 </div>
                 <div class="election">
                     <span class="status status-pending">PENDING</span>
-                    <h4>Faculty Board Election</h4>
-                    <p>Voters: 150</p>
+                    <h4>CSSC President Election</h4>
+                    <p>Voters: 350</p>
                     <p>Votes Cast: Election not started yet.</p>
                 </div>
             </div>
@@ -285,7 +319,8 @@
 
         const loggedUser = sessionStorage.getItem("loggedUser") || "Admin User";
         document.getElementById("profileName").textContent = loggedUser;
-        document.getElementById("profileUsername").textContent = loggedUser
+        document.getElementById("profileUsername").textContent = loggedUser;
+        document.getElementById("greeting-user").textContent = loggedUser;
 
         function updateTime() {
             document.getElementById("time").textContent =
