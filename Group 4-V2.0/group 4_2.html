@@ -47,7 +47,7 @@
             color: whitesmoke;
             text-align: center;
             padding-bottom: 25px;
-            background:linear-gradient(75deg, #002fff 0%, #20cfff 100%);
+            background: linear-gradient(75deg, #002fff 0%, #20cfff 100%);
         }
 
         .icon {
@@ -297,13 +297,26 @@
             <h1>Thank you for voting!</h1>
             <p>Your vote for <b id="votedCandidate">Guest</b> has been recorded</p><br>
             <form>
-                <button type="button" class="result" onclick= "window.location.href= 'group 4_4.html'">Results</button>
-                <button type="button" class="logout" onclick= "window.location.href= 'group 4_1.html'">Logout</button>
+                <button type="button" class="result" onclick="window.location.href= 'group 4_4.html'">Results</button>
+                <button type="button" class="logout" onclick="window.location.href= 'group 4_1.html'">Logout</button>
             </form>
         </div>
     </div>
 
     <script>
+        const loggedUser = sessionStorage.getItem("loggedUser") || "guest";
+
+        // Initialize votedUsers if not exists
+        if (!sessionStorage.getItem("votedUsers")) {
+            sessionStorage.setItem("votedUsers", JSON.stringify({}));
+        }
+        const votedUsers = JSON.parse(sessionStorage.getItem("votedUsers"));
+
+        if (votedUsers[loggedUser]) {
+            alert("You have already voted. Multiple voting is not allowed.");
+            window.location.href = "dashboard.html";
+        }
+
         const radios = document.querySelectorAll('input[name="vote"]');
         const submitBtn = document.getElementById("submitBtn");
         const popup = document.getElementById("popupwindow");
@@ -339,10 +352,13 @@
 
                 // Update the candidate name in popup
                 votedCandidateElement.textContent = selected.value;
+                // Mark this user as voted
+                votedUsers[loggedUser] = true;
+                sessionStorage.setItem("votedUsers", JSON.stringify(votedUsers));
 
                 // Show the popup
                 popup.style.display = "flex";
-                
+
                 // Hide the main voting interface
                 document.querySelector('.vote-container').style.display = "none";
             } else {
@@ -351,4 +367,5 @@
         });
     </script>
 </body>
+
 </html>
