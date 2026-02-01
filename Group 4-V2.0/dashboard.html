@@ -109,13 +109,12 @@
         }
 
         .profile-card {
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: center;
-            background: #ffffff;
+            background: linear-gradient(135deg, #ffffff, #f8f9ff);
+            border-radius: 16px;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 15px;
         }
 
         .btn-vote-now {
@@ -202,6 +201,26 @@
         .dashboard-vote-click:hover {
             outline: 2px solid #1e40af;
             outline-offset: 2px;
+        }
+
+        #profileRole {
+            color: #92400e;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #4f46e5
+        }
+        #profile{
+            align-items: center;
+        }
+        .profilediv1{
+            display: flex; align-items: center ; gap: 10px;
+        }
+        .profilediv2{
+            margin-top: 15px;padding: 15px; margin-inline-start: 100px ;
         }
     </style>
 </head>
@@ -304,11 +323,16 @@
 
         <!-- PROFILE -->
         <div id="profile" class="section">
-            <div class="profile-card ">
-                <h2 style="margin-bottom: 20px;">👤 Profile</h2>
-                <p><strong>Name:</strong> <span id="profileName">Admin User</span></p>
-                <p><strong>Username:</strong> <span id="profileUsername">admin</span></p>
-                <p><strong>Role:</strong> <span id="profileRole">Admin</span></p>
+            <div class="profile-card">
+                <div class="profilediv1">
+                    <img src="images.jpg" class="avatar" style="float: left;"> 
+                    <h2 style="margin-bottom: 20px;">Profile</h2>
+                </div>
+                <div class="profilediv2">
+                    <p><strong>Name:</strong> <span id="profileName" style="gap: 10px;">Admin User</span></p>
+                    <p><strong>Username:</strong> <span id="profileUsername" style="gap: 10px;">admin</span></p>
+                    <p><strong>Role:</strong> <span id="profileRole" style="gap: 10px;">Admin</span></p>
+                </div>
             </div>
         </div>
 
